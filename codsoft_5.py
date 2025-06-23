@@ -22,7 +22,7 @@ def add_contact(contacts):
     email = input("Email: ")
     address = input("Address: ")
     contacts.append({"name": name, "phone": phone, "email": email, "address": address})
-    print("✅ Contact added.")
+    print("Contact added.")
 
 # View contact list
 def view_contacts(contacts):
@@ -40,7 +40,7 @@ def search_contact(contacts):
         for c in results:
             print(f"\nName: {c['name']}\nPhone: {c['phone']}\nEmail: {c['email']}\nAddress: {c['address']}")
     else:
-        print("❌ Contact not found.")
+        print("Contact not found.")
 
 # Update contact
 def update_contact(contacts):
@@ -50,9 +50,9 @@ def update_contact(contacts):
             c["phone"] = input("New phone: ")
             c["email"] = input("New email: ")
             c["address"] = input("New address: ")
-            print("✅ Contact updated.")
+            print("Contact updated.")
             return
-    print("❌ Contact not found.")
+    print("Contact not found.")
 
 # Delete contact
 def delete_contact(contacts):
@@ -62,13 +62,13 @@ def delete_contact(contacts):
             contacts.remove(c)
             print("🗑️ Contact deleted.")
             return
-    print("❌ Contact not found.")
+    print("Contact not found.")
 
 # Main menu loop
 def main():
     contacts = load_contacts()
     while True:
-        print("\n📞 Contact Book")
+        print("\nContact Book")
         print("1. Add Contact")
         print("2. View Contact List")
         print("3. Search Contact")
@@ -91,10 +91,10 @@ def main():
             delete_contact(contacts)
         elif choice == "6":
             save_contacts(contacts)
-            print("📁 Contacts saved. Goodbye!")
+            print("Contacts saved. Goodbye!")
             break
         else:
-            print("⚠️ Invalid choice. Try again.")
+            print("Invalid choice. Try again.")
 
 if __name__ == "__main__":
     main()
