@@ -1,20 +1,20 @@
-def add(x, y):
+def add(num1, num2):
     """Calculates the sum of two numbers."""
-    return x + y
+    return num1 + num2
 
-def subtract(x, y):
+def subtract(num1, num2):
     """Calculates the difference between two numbers."""
-    return x - y
+    return num1 - num2
 
-def multiply(x, y):
+def multiply(num1, num2):
     """Calculates the product of two numbers."""
-    return x * y
+    return num1 * num2
 
-def divide(x, y):
+def divide(num1, num2):
     """Performs division of two numbers, handling zero as a divisor."""
-    if y == 0:
-        return "Oops! Division by zero is not allowed."
-    return x / y
+    if num2 == 0:
+        return "Oops! Division by zero is not allowed." # Handles division by zero
+    return num1 / num2
 
 def main():
     """Simple calculator program."""
@@ -26,14 +26,14 @@ def main():
     print("4. Division (/)")
     print("----------------------------------------")
 
-    while True:
+    while True: # Loop to allow multiple calculations
         operation_choice = input("Enter your choice (1, 2, 3, or 4): ").strip()
 
         if operation_choice in ('1', '2', '3', '4'):
             try:
                 first_number = float(input("Please enter the first number: "))
                 second_number = float(input("Please enter the second number: "))
-            except ValueError:
+            except ValueError: # Catches non-numeric input
                 print("Invalid input. Kindly enter numerical values for your calculations.")
                 continue # Loop back to ask for choice again
 
@@ -48,12 +48,12 @@ def main():
                 print(f"Result: {first_number} / {second_number} = {calculation_result}")
             
             # Offer to perform another calculation
-            continue_calculating = input("Would you like to do another calculation? (yes/no): ").strip().lower()
+            continue_calculating = input("You wants another calculation? (yes/no): ").strip().lower()
             if continue_calculating != 'yes':
                 print("Thank you for using the calculator. Exiting now!")
                 break # End the program
         else:
-            print("That's not a valid option. Please pick a number from 1 to 4.")
+            print("That's not a valid option. Pick a number from 1 to 4.")
 
 if __name__ == "__main__":
-    main()
+    main() # Runs the main calculator program
