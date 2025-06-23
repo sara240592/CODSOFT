@@ -1,64 +1,64 @@
 import random
 import sys
 
-def play_game(user_score, computer_score):
+def play_round(player_score, ai_score):
     """
-    This function will play a single round of Rock-Paper-Scissors against the computer.
+    Plays a single round of Rock-Paper-Scissors against the computer.
     Updates the scores and returns them.
     """
-    choices = ["rock", "paper", "scissors"]
-    computer_choice = random.choice(choices)
+    options = ["rock", "paper", "scissors"]
+    ai_choice = random.choice(options)
 
     print("\n--- Rock, Paper, Scissors! ---")
-    print("Enter your choice: rock, paper, or scissors")
+    print("Enter your move: rock, paper, or scissors")
     print("------------------------------")
 
     while True:
-        user_choice = input("Your choice: ").strip().lower()
+        player_move = input("Your move: ").strip().lower()
 
-        if user_choice in choices:
+        if player_move in options:
             break
         else:
-            print("Wrong choice. Please enter 'rock', 'paper', or 'scissors'.")
+            print("Invalid move. Please enter 'rock', 'paper', or 'scissors'.")
 
-    print(f"\nYou chose: {user_choice.capitalize()}")
-    print(f"Computer chose: {computer_choice.capitalize()}")
+    print(f"\nYou chose: {player_move.capitalize()}")
+    print(f"Computer chose: {ai_choice.capitalize()}")
 
     # Determine the winner and update scores
-    if user_choice == computer_choice:
+    if player_move == ai_choice:
         print("It's a tie!")
-    elif (user_choice == "rock" and computer_choice == "scissors") or \
-         (user_choice == "paper" and computer_choice == "rock") or \
-         (user_choice == "scissors" and computer_choice == "paper"):
-        print("Congrats you win this round!")
-        user_score += 1
+    elif (player_move == "rock" and ai_choice == "scissors") or \
+         (player_move == "paper" and ai_choice == "rock") or \
+         (player_move == "scissors" and ai_choice == "paper"):
+        print("You win this round!")
+        player_score += 1
     else:
         print("Computer wins this round!")
-        computer_score += 1
+        ai_score += 1
     
-    print(f"Current Score: You {user_score} - Computer {computer_score}")
-    return user_score, computer_score
+    print(f"Current Score: You {player_score} - Computer {ai_score}")
+    return player_score, ai_score
 
-def main():
+def run_game():
     """
-    This is a main function to run the Rock-Paper-Scissors game with score tracking
+    Main function to run the Rock-Paper-Scissors game with score tracking
     and a play-again option.
     """
-    user_total_score = 0
-    computer_total_score = 0
+    player_overall_score = 0
+    computer_overall_score = 0
 
     while True:
-        # Pass the current scores to the play_game function
-        user_total_score, computer_total_score = play_game(user_total_score, computer_total_score)
+        # Pass the current scores to the play_round function
+        player_overall_score, computer_overall_score = play_round(player_overall_score, computer_overall_score)
         
         while True: # Loop to ensure valid 'yes'/'no' input for playing again
-            play_again = input("\nDo you want to play another round? (yes/no): ").strip().lower()
-            if play_again == 'yes':
+            play_another = input("\nDo you want to play another round? (yes/no): ").strip().lower()
+            if play_another == 'yes':
                 break # Exit this inner loop, continue outer game loop
-            elif play_again == 'no':
+            elif play_another == 'no':
                 print("\n--- Final Score ---")
-                print(f"You: {user_total_score}")
-                print(f"Computer: {computer_total_score}")
+                print(f"You: {player_overall_score}")
+                print(f"Computer: {computer_overall_score}")
                 print("Thanks for playing! Goodbye!")
                 sys.exit() # Exit the program
             else:
@@ -66,7 +66,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        run_game()
     except KeyboardInterrupt:
         print("\nGame interrupted. Goodbye!")
         sys.exit()
