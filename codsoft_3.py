@@ -1,21 +1,23 @@
 import random
 import sys
 
-def generate_password(length):
+def generate_password(password_length):
     """
     Generates a simple random password of a specified length
     """
-    characters = "abcdefghijklmnopqrstuvwxyz0123456789"
+    # Defines the pool of characters available for the password
+    allowed_characters = "abcdefghijklmnopqrstuvwxyz0123456789"
     
     # Check if the character set is empty
-    if not characters:
+    if not allowed_characters:
         return "Error: No characters available for password generation."
 
-    generated_password = ""
-    for _ in range(length):
-        generated_password += random.choice(characters)
+    # Builds the password by randomly selecting characters
+    new_password = ""
+    for _ in range(password_length):
+        new_password += random.choice(allowed_characters)
     
-    return generated_password
+    return new_password
 
 def main():
     """
@@ -29,20 +31,20 @@ def main():
     while True:
         try:
             # Prompt user for password length
-            desired_length_str = input("Enter the desired password length (e.g., 8, 10, 12): ").strip()
-            desired_length = int(desired_length_str)
+            input_length_str = input("Enter the desired password length (e.g., 8, 10, 12): ").strip()
+            requested_length = int(input_length_str)
 
-            if desired_length <= 0:
+            if requested_length <= 0:
                 print("Password length must be a positive number. Please enter a valid length.")
             else:
                 # Generate and display the password
-                password = generate_password(desired_length)
-                print(f"\nYour new simple password: {password}")
+                generated_pwd = generate_password(requested_length)
+                print(f"\nYour new simple password: {generated_pwd}")
                 print("--------------------------------------")
                 
                 # Ask if the user wants another password
-                another_password = input("Generate another password? (yes/no): ").strip().lower()
-                if another_password != 'yes':
+                continue_generating = input("Generate another password? (yes/no): ").strip().lower()
+                if continue_generating != 'yes':
                     print("Exiting password generator. Have a great day!")
                     sys.exit() # Exit the program
         except ValueError:
